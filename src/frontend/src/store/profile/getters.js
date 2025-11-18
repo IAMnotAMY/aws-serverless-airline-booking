@@ -14,7 +14,7 @@ export const isAuthenticated = (state) => {
  * @returns {string} - Current user first name attribute in identity provider
  */
 export const firstName = (state) => {
-  return state.user.attributes?.given_name ?? 'First'
+  return (state.user.attributes && state.user.attributes.given_name) || 'First'
 }
 
 /**
@@ -23,7 +23,7 @@ export const firstName = (state) => {
  * @returns {string} - Current user last name attribute in identity provider
  */
 export const lastName = (state) => {
-  return state.user.attributes?.family_name ?? 'Last Name'
+  return (state.user.attributes && state.user.attributes.family_name) || 'Last Name'
 }
 
 /**
@@ -32,5 +32,5 @@ export const lastName = (state) => {
  * @returns {object} - All attributes available for current user last name attribute in identity provider e.g. userAttributes.email
  */
 export const userAttributes = (state) => {
-  return state.user.attributes ?? 'no attributes'
+  return state.user.attributes || 'no attributes'
 }

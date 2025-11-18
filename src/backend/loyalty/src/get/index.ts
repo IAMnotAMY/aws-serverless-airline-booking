@@ -92,9 +92,9 @@ export const points = async (customerId: string, client: DocumentClientInterface
   }
 
   try {
-    let data = await client.query(params).promise()
+    const data = await client.query(params);
     if (data.Items) {
-      items = data.Items
+      items = data.Items;
     }
   } catch (error) {
     console.log(error);

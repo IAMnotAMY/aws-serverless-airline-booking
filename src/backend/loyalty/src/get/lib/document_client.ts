@@ -1,13 +1,11 @@
-const AWSXRay = require('aws-xray-sdk-core')
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { DynamoDBDocumentClient, QueryCommand, QueryCommandInput, QueryCommandOutput } from '@aws-sdk/lib-dynamodb';
+import { captureAWSv3Client } from 'aws-xray-sdk-core';
 
-import { DocumentClient } from 'aws-sdk/clients/dynamodb';
-import { AWSError } from 'aws-sdk/lib/error';
-import { Request } from 'aws-sdk/lib/request';
+const ddbClient = new DynamoDBClient({});
+const client = DynamoDBDocumentClient.from(ddbClient);
 
-let client: DocumentClient;
-client = new DocumentClient();
-
-AWSXRay.captureAWSClient((client as any).service);
+captureAWSv3Client(ddbClient);
 
 /**
  * Document Client Interface
@@ -15,7 +13,17 @@ AWSXRay.captureAWSClient((client as any).service);
  * A replaceable document client object that can be replaced 
  */
 export interface DocumentClientInterface {
-  query(params: DocumentClient.QueryInput, callback?: (err: AWSError, data: DocumentClient.QueryOutput) => void): Request<DocumentClient.QueryOutput, AWSError>;
+  query(params: QueryCommandInput): Promise<QueryCommandOutput>;
+}
+
+/**
+ * Default Document Client implementation using AWS SDK v3
+ */
+class DefaultDocumentClientImpl implements DocumentClientInterface {
+  async query(params: QueryCommandInput): Promise<QueryCommandOutput> {
+    const command = new QueryCommand(params);
+    return await client.send(command);
+  }
 }
 
 /**
@@ -23,7 +31,7 @@ export interface DocumentClientInterface {
  * 
  * @type DocumentClientInterface
  */
-// export let DefaultDocumentClient: DocumentClientInterface = new DocumentClient();
-export let DefaultDocumentClient: DocumentClientInterface = client;
-export type QueryInput = DocumentClient.QueryInput
-export type ItemList = DocumentClient.ItemList
+export const DefaultDocumentClient: DocumentClientInterface = new DefaultDocumentClientImpl();
+export type QueryInput = QueryCommandInput;
+export type ItemList = Record<string, any>[];
+export type QueryOutput = QueryCommandOutput;

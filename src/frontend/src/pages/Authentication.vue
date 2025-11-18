@@ -57,8 +57,8 @@ export default {
     })
 
     Hub.listen(authMessageChannel, (data) => {
-      const event = data.payload?.event ?? ''
-      const message = data.payload?.message ?? ''
+      const event = (data.payload && data.payload.event) || ''
+      const message = (data.payload && data.payload.message) || ''
 
       // Ignore message if customer hasn't attempted to login yet
       if (message === noAuthMessage) return

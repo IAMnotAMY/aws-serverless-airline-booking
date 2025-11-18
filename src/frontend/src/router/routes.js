@@ -8,7 +8,7 @@ const routes = [
         name: 'home',
         alias: '/search',
         component: () => import('pages/Search.vue'),
-        meta: { requiresAuth: true }
+        meta: { requiresAuth: false }
       },
       {
         name: 'searchResults',

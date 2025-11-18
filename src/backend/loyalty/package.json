@@ -3,29 +3,30 @@
   "version": "1.0.0",
   "description": "Loyalty service to collection airmiles",
   "dependencies": {
-    "aws-sdk": "^2.814.0",
-    "aws-xray-sdk-core": "^2.5.0",
-    "uuid": "^7.0.2"
+    "@aws-sdk/client-dynamodb": "^3.490.0",
+    "@aws-sdk/lib-dynamodb": "^3.490.0",
+    "aws-xray-sdk-core": "^3.6.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.70",
-    "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.20",
-    "@types/uuid": "^8.3.0",
-    "aws-sdk-mock": "^5.1.0",
-    "jest": "^26.6.3",
-    "ts-jest": "^26.4.4",
-    "ts-loader": "^6.2.1",
-    "tslint": "^6.1.0",
-    "typescript": "^3.8.3",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.11"
+    "@types/aws-lambda": "^8.10.130",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.0",
+    "@types/uuid": "^9.0.7",
+    "aws-sdk-client-mock": "^3.0.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "esbuild": "^0.19.11",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
   },
   "scripts": {
     "test": "jest",
-    "watch": "NODE_ENV=dev webpack --watch --mode=development",
-    "build": "NODE_ENV=prod webpack --mode=production",
-    "lint": "tslint --project tsconfig.json"
+    "watch": "NODE_ENV=dev esbuild src/**/*.ts --outdir=dist --watch --platform=node --target=node18",
+    "build": "NODE_ENV=prod esbuild src/**/*.ts --outdir=dist --bundle --platform=node --target=node18 --minify",
+    "lint": "eslint --ext .ts src/"
   },
   "repository": {
     "type": "git",

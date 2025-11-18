@@ -96,9 +96,9 @@ export default {
       }
     },
     bookingDestination(booking) {
-      const departure = booking.outboundFlight?.departureCity ?? 'Departure'
-      const arrival = booking.outboundFlight?.arrivalCity ?? 'Arrival'
-      const date = booking.bookingDate ?? ''
+      const departure = (booking.outboundFlight && booking.outboundFlight.departureCity) || 'Departure'
+      const arrival = (booking.outboundFlight && booking.outboundFlight.arrivalCity) || 'Arrival'
+      const date = booking.bookingDate || ''
       return `${departure}-${arrival} - ${date}`
     }
   },

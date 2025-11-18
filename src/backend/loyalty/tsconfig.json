@@ -2,9 +2,14 @@
   "include": [
     "./src/**/*.ts"
   ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "compilerOptions": {
-    "target": "es2017",
+    "target": "ES2022",
     "module": "commonjs",
+    "lib": ["ES2022"],
     "strict": true,
     "baseUrl": "./",
     "typeRoots": [
@@ -15,7 +20,12 @@
       "jest"
     ],
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   }
 }
