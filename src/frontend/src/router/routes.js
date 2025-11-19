@@ -1,13 +1,13 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/SimpleLayout.vue'),
     children: [
       {
         path: '',
         name: 'home',
         alias: '/search',
-        component: () => import('pages/Search.vue'),
+        component: () => import('pages/SimpleSearch.vue'),
         meta: { requiresAuth: false }
       },
       {
@@ -48,7 +48,7 @@ const routes = [
   // Always leave this as last one,
   // but you can also remove it
   {
-    path: '*',
+    path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue')
   }
 ]

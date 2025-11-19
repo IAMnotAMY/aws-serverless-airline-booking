@@ -1,11 +1,14 @@
 {
   "name": "e2e-tests",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "End-to-end tests for Serverless Airline services",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test:ui": "cypress open --project ./ui/",
-    "test:ui:dev": "CYPRESS_baseUrl=http://localhost:8080 cypress open --project ./ui/"
+    "test:ui:dev": "cypress open --project ./ui/ --config baseUrl=http://localhost:9000",
+    "test:ui:headless": "cypress run --project ./ui/",
+    "test:ui:headless:dev": "cypress run --project ./ui/ --config baseUrl=http://localhost:9000"
   },
   "repository": {
     "type": "git",
@@ -18,9 +21,12 @@
   },
   "homepage": "https://github.com/aws-samples/aws-serverless-airline-booking#readme",
   "devDependencies": {
-    "cypress": "^8.6.0"
+    "cypress": "^13.6.0",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
   },
-  "resolutions": {
-    "lodash": ">=4.17.21"
+  "engines": {
+    "node": ">= 18.0.0",
+    "npm": ">= 8.0.0"
   }
 }

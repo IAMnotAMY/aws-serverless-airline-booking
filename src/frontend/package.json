@@ -1,48 +1,50 @@
 {
   "name": "aws-serverless-airline-booking",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Serverless Airline Booking is a sample web application that provides Flight Search, Payment, Booking and Loyalty points",
   "productName": "Serverless Airline",
   "author": "Amazon Web Services",
   "private": true,
   "scripts": {
+    "dev": "quasar dev",
     "serve": "quasar dev",
     "build": "quasar build",
-    "lint": "eslint --ext .js,.vue ./",
+    "lint": "eslint --ext .js,.vue,.ts src/",
+    "lint:fix": "eslint --ext .js,.vue,.ts src/ --fix",
+    "format": "prettier --write \"src/**/*.{js,vue,ts,css,scss,sass,html,md}\"",
     "test": "echo \"No test specified\" && exit 0",
-    "docs": "echo '[!!!] Looking for a replacement for esdoc due to CVEs' && exit 0"
+    "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@aws-amplify/api": "^4.0.20",
-    "@aws-amplify/auth": "^4.3.10",
-    "@aws-amplify/core": "^4.3.2",
-    "@aws-amplify/interactions": "^4.0.20",
-    "@aws-amplify/storage": "^4.4.3",
-    "@aws-amplify/ui-components": "^1.9.0",
-    "@aws-amplify/ui-vue": "^1.1.14",
-    "@quasar/extras": "^1.15.0",
-    "axios": "^0.27.2",
-    "core-js": "^3.25.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.0",
-    "fuse.js": "^6.6.0",
-    "prettier": "^2.7.0",
-    "quasar": "^1.22.0",
-    "vue-content-loader": "^0.2.3",
-    "vuelidate": "^0.7.7"
+    "@aws-amplify/ui-vue": "^4.0.0",
+    "@quasar/extras": "^1.16.0",
+    "@vuelidate/core": "^2.0.0",
+    "@vuelidate/validators": "^2.0.0",
+    "autoprefixer": "^10.4.22",
+    "aws-amplify": "^6.0.0",
+    "axios": "^1.6.0",
+    "core-js": "^3.35.0",
+    "fuse.js": "^7.0.0",
+    "pinia": "^2.1.0",
+    "quasar": "^2.14.0",
+    "sass": "^1.94.1",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.0",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@quasar/app": "^2.4.0",
+    "@quasar/app-vite": "^1.7.0",
     "@quasar/quasar-app-extension-dotenv": "^1.1.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-standard": "^5.0.0",
-    "eslint-plugin-vue": "^8.7.0"
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/eslint-config-typescript": "^12.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-vue": "^9.19.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.0",
+    "vue-tsc": "^1.8.0"
   },
   "browserslist": [
     "last 10 Chrome versions",
@@ -56,13 +58,8 @@
     "last 5 Opera versions"
   ],
   "engines": {
-    "node": ">= 14.0.0",
-    "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1"
-  },
-  "overrides": {
-    "eslint-config-standard": {
-      "eslint-plugin-promise": "^6.0.0"
-    }
+    "node": ">= 18.0.0",
+    "npm": ">= 8.0.0",
+    "yarn": ">= 1.22.0"
   }
 }
